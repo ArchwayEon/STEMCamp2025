@@ -11,7 +11,6 @@ export class World{
    #zFar = 1000;
    #zNear = 0.1;
    #moveDirection = new THREE.Vector3(0, 0, 1);
-   #distanceToMove = 2;
    #distanceMoved = 0;
    #soldier = null;
    #mixer;
@@ -56,7 +55,7 @@ export class World{
 
       this.#rotateObjectAroundY('Box1', 180, elapsedSeconds);
 
-      this.#moveObjectBackAndForth('Sphere1', elapsedSeconds);
+      this.#moveObjectBackAndForth('Sphere1', elapsedSeconds, 3);
 
       if(this.#mixer) this.#mixer.update(elapsedSeconds);
    }
@@ -67,13 +66,12 @@ export class World{
       object.rotateY(deltaRadians);
    }
 
-   #moveObjectBackAndForth(name, elapsedSeconds){
+   #moveObjectBackAndForth(name, elapsedSeconds, distanceToMove = 2){
       const object = this.#objectMap.get(name);
       const deltaMove = new THREE.Vector3();
       deltaMove.addScaledVector(this.#moveDirection, elapsedSeconds);
       this.#distanceMoved += deltaMove.length();
-      if(this.#distanceMoved >= this.#distanceToMove){
-         this.#distanceToMove = 2;
+      if(this.#distanceMoved >= distanceToMove){
          this.#moveDirection.negate();
          this.#distanceMoved = 0;
       }
