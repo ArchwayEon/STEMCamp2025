@@ -149,6 +149,7 @@ export class World{
    }
 
    #loadSoldier(){
+      // See https://threejs.org/examples/#webgl_animation_skinning_blending
       const loader = new GLTFLoader();
       loader.load('Soldier.glb', (gltf) => {
          this.#soldier = gltf.scene;
