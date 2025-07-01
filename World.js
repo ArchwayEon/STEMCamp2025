@@ -22,7 +22,7 @@ export class World{
 
    initialize(){
       this.#engine.initialize();
-      this.#createDefaultCamera();
+      this.#createPerspectiveCamera();
       this.#setUpScene();
       document.addEventListener("keydown", (event) => this.#keyDown(event));
    }
@@ -138,9 +138,9 @@ export class World{
       this.#objectMap.set(name, sphere);
    }
 
-   #createDefaultCamera(){
+   #createPerspectiveCamera(){
       this.#camera = new THREE.PerspectiveCamera(
-         this.#fov, this.#aspect, this.#zNear, this.#zFar);
+         this.#fov, this.#engine.cameraAspect, this.#zNear, this.#zFar);
       this.#camera.lookAt(0, 0, 0);
       this.#camera.position.set(0, 1, 5); 
       this.#camera.updateProjectionMatrix();
