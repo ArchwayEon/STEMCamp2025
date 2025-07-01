@@ -4,14 +4,9 @@ export class ThreeJSEngine{
    #canvas;
    #renderer;
    #clearColor = 0x000;
-   #cameraAspect = 2;
 
    constructor(canvas){
       this.#canvas = canvas;
-   }
-
-   get cameraAspect() {
-      return this.#cameraAspect;
    }
 
    initialize(){
@@ -42,7 +37,6 @@ export class ThreeJSEngine{
       if (needResize) {
          this.#renderer.setSize(width, height, false);
       }
-      this.#cameraAspect = width / height;
       return needResize;
    }
 
